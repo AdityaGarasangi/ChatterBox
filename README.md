@@ -1,4 +1,4 @@
-<img src="images/logo.png" alt="Chatterbox Logo" width="50" /> # Chatterbox - Real-Time Chat Application
+<img src="images/logo.png" alt="Chatterbox Logo" width="50" />  # Chatterbox - Real-Time Chat Application
 
 
 
