@@ -1,6 +1,6 @@
 # Chatterbox - Real-Time Chat Application
 
-<img src="images/logo.png" alt="Chatterbox Logo" width="80" /><!-- Optional: Add a logo image -->
+<img src="images/logo.png" alt="Chatterbox Logo" width="50" /><!-- Optional: Add a logo image -->
 
 ## Description
 
