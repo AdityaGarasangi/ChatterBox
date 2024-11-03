@@ -26,3 +26,61 @@ Chatterbox is a real-time chat application built using Django, Django Channels, 
   - JavaScript
 - **Database**: SQLite (or specify another database if used)
 - **Version Control**: Git & GitHub
+
+## Screenshots
+
+- Registration Page
+  ![Registration Page](images/register.png)
+
+- Login Page
+  ![Login Page](images/login.png)
+
+- Profile Page
+  ![Profile Page](images/profile.png)
+  
+- Home Page
+  ![Home Page](images/Home.png)
+  
+- Chat Room
+  ![Chat Page](images/room.png)
+
+## Usage
+- **Register**: Create a new account through the registration page.
+- **Login**: Use your credentials to log in.
+- **Join Chat Rooms**: Once logged in, you can join available chat rooms.
+- **Send Messages**: Type and send messages in real-time with other users.
+- **Manage Profile**: View and edit your profile information.
+
+
+## Installation
+
+To set up the project locally, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/AdityaGarasangi/ChatterBox.git
+   cd ChatterBox
+   ```
+
+2. **Create a virtual environment**:
+   ```bash
+   python -m venv env
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
+
+3. **Install dependencies**:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+4. **Run database migrations**:
+  ```bash
+  python manage.py migrate
+  ```
+
+6. **Run the development server**:
+   ```bash
+   python manage.py runserver
+   ```
+
+8. Access the application: Open your browser and go to ``` http://127.0.0.1:8000/register ```  
