@@ -28,19 +28,24 @@ Chatterbox is a real-time chat application built using Django, Django Channels, 
 
 ## Screenshots
 
-- Registration Page
+- **Registration Page**
+  
   ![Registration Page](images/register.png)
 
-- Login Page
+- **Login Page**
+  
   ![Login Page](images/login.png)
 
-- Profile Page
+- **Profile Page**
+  
   ![Profile Page](images/profile.png)
   
-- Home Page
-  ![Home Page](images/Home.png)
+- **Home Page**
   
-- Chat Room
+  ![Home Page](images/home.png)
+  
+- **Chat Room**
+  
   ![Chat Page](images/room.png)
 
 ## Usage
