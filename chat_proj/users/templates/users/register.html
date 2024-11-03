@@ -1,0 +1,30 @@
+{% extends 'chat_app/baseTemp.html' %}
+{% load static %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block content %}
+  <div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <form class="bg-gray-800 p-10 rounded-lg shadow-lg w-full max-w-md" method="post" action="">
+      {% csrf_token %}
+      <h2 class="text-3xl font-bold text-white mb-6 text-center">Create an Account</h2>
+
+      {% for field in user_form %}
+        <div class="mb-5">
+          <label class="block text-white font-semibold mb-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
+          <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" value="{{ field.value|default:'' }}" class="w-full p-3 rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{{ field.label }}" required />
+          {% if field.errors %}
+            <span class="text-red-500 text-sm">{{ field.errors }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200" type="submit">Sign Up</button>
+      <p class="text-lg font-light text-gray-300 mt-4">
+        Already have an account? <a href="{% url 'login' %}" class="font-medium text-blue-400 hover:underline">Login</a>
+      </p>
+    </form>
+  </div>
+{% endblock %}

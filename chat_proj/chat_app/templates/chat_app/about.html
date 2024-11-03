@@ -1,0 +1,39 @@
+{% extends 'chat_app/baseTemp.html' %}
+
+{% block title %}
+  About ChatterBox
+{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto p-10">
+    <h1 class="text-4xl font-bold text-center text-white mb-6">About ChatterBox</h1>
+
+    <p class="text-lg text-gray-300 mb-4">ChatterBox is a real-time chat application designed to connect people through engaging conversations. Whether you want to discuss topics of interest, share ideas, or simply chat with friends, ChatterBox provides a user-friendly interface to facilitate these interactions.</p>
+
+    <h2 class="text-2xl font-semibold text-white mb-2">Features</h2>
+    <ul class="list-disc list-inside text-gray-300 mb-4">
+      <li>Real-time messaging with WebSocket integration</li>
+      <li>Multiple chat rooms to join and engage</li>
+      <li>User-friendly interface with a modern design</li>
+      <li>Responsive layout for mobile and desktop users</li>
+      <li>Username display for easy identification</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold text-white mb-2">Technologies Used</h2>
+    <p class="text-lg text-gray-300 mb-4">ChatterBox is built using the following technologies:</p>
+    <ul class="list-disc list-inside text-gray-300 mb-4">
+      <li>Django for the backend framework</li>
+      <li>HTML, CSS, and Tailwind CSS for styling</li>
+      <li>JavaScript for frontend interactivity</li>
+      <li>WebSockets for real-time communication</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold text-white mb-2">Get Involved</h2>
+    <p class="text-lg text-gray-300 mb-4">We welcome contributions and feedback! If you're interested in helping us improve ChatterBox or have suggestions, feel free to reach out or check out our GitHub repository.</p>
+
+    <h2 class="text-2xl font-semibold text-white mb-2">Contact Us</h2>
+    <p class="text-lg text-gray-300 mb-4">
+      For inquiries or support, please contact us at: <a href="mailto:support@chatterbox.com" class="text-blue-400">support@chatterbox.com</a>
+    </p>
+  </div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'chat_app/baseTemp.html' %}
+{% load static %}
+
+{% block title %}
+  Rooms
+{% endblock %}
+
+{% block content %}
+  <!-- Fixed Navbar -->
+  <nav class="bg-gray-800 p-4 fixed top-0 left-0 right-0 z-10">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="{% url 'index' %}" class="flex items-center">
+        <img class="h-10 mr-3" src="https://cdn0.iconfinder.com/data/icons/comic-social-network-1/512/email_contact_mail_communicate_message-512.png" alt="Logo" />
+        <span class="text-2xl font-bold text-white">ChatterBox</span>
+      </a>
+      <div class="w-auto">
+        <ul class="flex space-x-4">
+          <li>
+            {% if request.user.is_authenticated %}
+              <a class="block py-2 px-4 rounded hover:bg-blue-600 transition-colors" href="">{{ request.user.username }}</a>
+            {% else %}
+              <a class="block py-2 px-4 rounded hover:bg-blue-600 transition-colors" href="{% url 'login' %}">Login</a>
+            {% endif %}
+          </li>
+          <li>
+            <a class="block py-2 px-4 rounded hover:bg-blue-600 transition-colors" href="{% url 'index' %}">Rooms</a>
+          </li>
+          <li>
+            <a class="block py-2 px-4 rounded hover:bg-blue-600 transition-colors" href="{% url 'about' %}">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Below Navbar -->
+  <div class="mt-20">
+    <div class="m-10 font-bold text-2xl text-center text-gray-100">{{ room.name }}</div>
+
+    <div class="message-container m-10 h-[800px] bg-gray-900 p-4 rounded-lg shadow-lg overflow-y-auto" id="message-container">
+      <div id="chat-messages" class="flex flex-col space-y-4">
+        {% for message in messages %}
+          <div class="message flex justify-start">
+            <div class="flex items-center">
+              {% if users.profile.image %}
+                <img src="{{ users.profile.image.url }}" class="w-8 h-8 rounded-full mr-2" alt="{{ message.user.username }}'s avatar" />
+              {% else %}
+                <img src="{% static 'users/images/default.jpg' %}" class="w-8 h-8 rounded-full mr-2" alt="Default avatar" />
+              {% endif %}
+              <div class="message-bubble bg-gray-700 text-white rounded-r-lg rounded-bl-lg p-3 max-w-xs">
+                <div class="font-semibold">{{ message.user.username }}</div>
+                <div class="mt-1">{{ message.message_content }}</div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="form-container fixed inset-x-0 bottom-0 bg-gray-800 p-4 flex items-center shadow-lg">
+      <form method="POST" class="flex w-full">
+        {% csrf_token %}
+        <input class="rounded-full px-4 h-10 flex-grow mr-3 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="message-input" type="text" name="message" placeholder="Type a message..." required />
+        <button class="flex-shrink-0 bg-blue-500 hover:bg-blue-600 rounded-full p-2 transition-colors" id="send-button" type="submit"><img class="h-6" src="https://cdn4.iconfinder.com/data/icons/liny/24/send-line-512.png" alt="send" /></button>
+      </form>
+    </div>
+
+    {{ room.slug|json_script:'json-roomname' }}
+    {{ request.user.username|json_script:'json-username' }}
+
+    <script>
+      const chatRoomname = JSON.parse(document.getElementById('json-roomname').textContent)
+      const username = JSON.parse(document.getElementById('json-username').textContent)
+      const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + chatRoomname + '/')
+      const imgurl = '{{ user_profile_image }}'
+      chatSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data)
+        if (data.message) {
+          console.log('Received message to client:', data.message)
+          let html = '<div class="message flex justify-start">' + '<div class="flex items-center">' + '<img src= "' + imgurl + '" class="w-8 h-8 rounded-full mr-2" alt="' + data.username + '\'s avatar">' + '<div class="message-bubble bg-gray-700 text-white rounded-r-lg rounded-bl-lg p-3 max-w-xs">' + '<div class="font-semibold">' + data.username + '</div>' + '<div class="mt-1">' + data.message + '</div>' + '</div>' + '</div></div>'
+          document.getElementById('chat-messages').innerHTML += html
+          scroll()
+        } else {
+          alert('The message was empty.')
+        }
+      }
+      
+      chatSocket.onclose = function (e) {
+        console.log('Socket Closed')
+      }
+      
+      document.getElementById('send-button').onclick = function (e) {
+        e.preventDefault()
+        const messageInput = document.getElementById('message-input')
+        const message = messageInput.value
+      
+        chatSocket.send(
+          JSON.stringify({
+            message: message,
+            username: username,
+            room: chatRoomname
+          })
+        )
+        messageInput.value = ''
+      }
+      
+      function scroll() {
+        const mcontainer = document.getElementById('message-container')
+        mcontainer.scrollTop = mcontainer.scrollHeight
+      }
+      
+      scroll()
+    </script>
+  </div>
+{% endblock %}
