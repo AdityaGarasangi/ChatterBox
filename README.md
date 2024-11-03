@@ -1,6 +1,6 @@
 # Chatterbox - Real-Time Chat Application
 
-![Chatterbox Logo](path/to/logo.png) <!-- Optional: Add a logo image -->
+![Chatterbox Logo](images/logo.png) <!-- Optional: Add a logo image -->
 
 ## Description
 
