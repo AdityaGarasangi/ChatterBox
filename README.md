@@ -69,18 +69,18 @@ To set up the project locally, follow these steps:
    ```
 
 3. **Install dependencies**:
-  ```bash
-  pip install -r requirements.txt
-  ```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 4. **Run database migrations**:
-  ```bash
-  python manage.py migrate
-  ```
+    ```bash
+    python manage.py migrate
+    ```
 
 6. **Run the development server**:
-   ```bash
-   python manage.py runserver
-   ```
+     ```bash
+     python manage.py runserver
+     ```
 
 8. Access the application: Open your browser and go to ``` http://127.0.0.1:8000/register ```  
