@@ -14,7 +14,7 @@ Chatterbox is a real-time chat application built using Django, Django Channels, 
 - **Profile Management**: Users can view and edit their profiles, including profile pictures.
 - **Responsive Design**: Built with Tailwind CSS, the application is fully responsive and works seamlessly on various devices.
 
-## Technologies Used
+## Technologies Used :
 
 - **Backend**: 
   - Django
